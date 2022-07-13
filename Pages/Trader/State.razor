@@ -1,0 +1,308 @@
+﻿@page "/trader/state/{tradername}"
+
+
+
+
+<button type="button" @onclick='() => navigationManager.NavigateTo("/waverider/list")'
+        class="btn btn-sm btn-primary">
+    Back To WaveRiders
+</button>
+<div>&nbsp</div>
+
+
+<SpinLoader IsLoading="isLoading">
+
+    <LoadingTemplate>
+        <div class="col-12" style="background-color: lightgray; height:200px; vertical-align:middle">
+            <br />
+            <br />
+            Loading and processing data from broker...
+            <Chase Center="true" Color="#c21f13" Size="70px"></Chase>
+        </div>
+    </LoadingTemplate>
+
+    <ContentTemplate>
+
+        @if (Trader_State is not null)
+        {
+            @*Display Table for Trade Cache*@
+            @if (Trader_State.TradeCache is not null)
+            {
+                <div class="notebox">
+                    <h3>Trade Cache</h3>
+                    <table class="table table-sm table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 300px"></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Instrument</td>
+                                <td>@Trader_State.TradeCache.Instrument</td>
+                            </tr>
+                            <tr>
+                                <td>Account Number</td>
+                                <td>@Trader_State.TradeCache.AccountNumber</td>
+                            </tr>
+                            <tr>
+                                <td>CreatedZ</td>
+                                <td>@Trader_State.TradeCache.CreatedZ</td>
+                            </tr>
+                            <tr>
+                                <td>Duration</td>
+                                <td>@Trader_State.TradeCache.Duration</td>
+                            </tr>
+                            <tr>
+                                <td>EngineID</td>
+                                <td>@Trader_State.TradeCache.EngineID</td>
+                            </tr>
+                            <tr>
+                                <td>Pips to Stop Loss</td>
+                                <td>@Trader_State.TradeCache.PipsToStopLoss</td>
+                            </tr>
+                            <tr>
+                                <td>Pips to Take Profit</td>
+                                <td>@Trader_State.TradeCache.PipsToTakeProfit</td>
+                            </tr>
+                            <tr>
+                                <td>TradeID</td>
+                                <td>@Trader_State.TradeCache.TradeID</td>
+                            </tr>
+                            <tr>
+                                <td>Profit / Loss</td>
+                                <td>@Trader_State.TradeCache.PL</td>
+                            </tr>
+                            <tr>
+                                <td>Units</td>
+                                <td>@Trader_State.TradeCache.Units</td>
+                            </tr>
+                            <tr>
+                                <td>Price</td>
+                                <td>@Trader_State.TradeCache.Price.Value</td>
+                            </tr>
+                            <tr>
+                                <td>Significant Digit</td>
+                                <td>@Trader_State.TradeCache.Price.SignificantDigit</td>
+                            </tr>
+                            <tr>
+                                <td>Pips</td>
+                                <td>@Trader_State.TradeCache.Price.Pips</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="notebox">
+                    <h3>No Active Trade</h3>
+                </div>
+            }
+
+            <div class="notebox">
+                <h3>TraderState</h3>
+                <table class="table table-sm table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 300px"></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Account Balance</td>
+                            <td>@Trader_State.AccountBalance.ToString()</td>
+                        </tr>
+                        <tr>
+                            <td>EngineID</td>
+                            <td>@Trader_State.EngineID</td>
+                        </tr>
+                        <tr>
+                            <td>Active Trade</td>
+                            <td>@Trader_State.ActiveTrade</td>
+                        </tr>
+                        <tr>
+                            <td>Engine Loop Count</td>
+                            <td>@Trader_State.EngineLoopCount</td>
+                        </tr>
+                        <tr>
+                            <td>Last Run</td>
+                            <td>@Trader_State.LastRun</td>
+                        </tr>
+                        <tr>
+                            <td>Trading Paused</td>
+                            <td>@Trader_State.TradingPaused</td>
+                        </tr>
+                        <tr>
+                            <td>Wins</td>
+                            <td>@Trader_State.Wins</td>
+                        </tr>
+                        <tr>
+                            <td>Losses</td>
+                            <td>@Trader_State.Losses</td>
+                        </tr>
+                        <tr>
+                            <td>Trader</td>
+                            <td>@Trader_State.Name</td>
+                        </tr>
+                        <tr>
+                            <td>Registration ID</td>
+                            <td>@Trader_State.RegistrationID</td>
+                        </tr>
+                        <tr>
+                            <td>Trader ID</td>
+                            <td>@Trader_State.TraderID</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+
+            @*Display Table fore TradeHourConfig*@
+            @if (Trader_State.TradeHourConfig is not null)
+            {
+                <div class="notebox">
+                    <h3>TradeHourConfig</h3>
+                    <table class="table table-sm table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 300px"></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Channel Width</td>
+                                <td>@Trader_State.TradeHourConfig.ChannelWidth</td>
+                            </tr>
+                            <tr>
+                                <td>Curve Intervals</td>
+                                <td>@Trader_State.TradeHourConfig.CurveIntervals</td>
+                            </tr>
+                            <tr>
+                                <td>Engine Delay</td>
+                                <td>@Trader_State.TradeHourConfig.EngineDelay</td>
+                            </tr>
+                            <tr>
+                                <td>Hour</td>
+                                <td>@Trader_State.TradeHourConfig.Hour</td>
+                            </tr>
+                            <tr>
+                                <td>Local Hour</td>
+                                <td>@Trader_State.TradeHourConfig.LocalHour</td>
+                            </tr>
+
+                            <tr>
+                                <td>Instrument</td>
+                                <td>@Trader_State.TradeHourConfig.Instrument</td>
+                            </tr>
+                            <tr>
+                                <td>Curve Intervals</td>
+                                <td>@Trader_State.TradeHourConfig.CurveIntervals</td>
+                            </tr>
+                            <tr>
+                                <td>Long Zone</td>
+                                <td>@Trader_State.TradeHourConfig.LongZone</td>
+                            </tr>
+                            <tr>
+                                <td>Short Zone</td>
+                                <td>@Trader_State.TradeHourConfig.ShortZone</td>
+                            </tr>
+                            <tr>
+                                <td>Curve Intervals</td>
+                                <td>@Trader_State.TradeHourConfig.CurveIntervals</td>
+                            </tr>
+                            <tr>
+                                <td>Max Channel Height</td>
+                                <td>@Trader_State.TradeHourConfig.MaxChannelHeight</td>
+                            </tr>
+                            <tr>
+                                <td>Min Channel Height</td>
+                                <td>@Trader_State.TradeHourConfig.MinChannelHeight</td>
+                            </tr>
+
+                            <tr>
+                                <td>Max Spread</td>
+                                <td>@Trader_State.TradeHourConfig.MaxSpread</td>
+                            </tr>
+                            <tr>
+                                <td>Profit Stategy</td>
+                                <td>@Trader_State.TradeHourConfig.ProfitStrategy</td>
+                            </tr>
+                            <tr>
+                                <td>Stop Loss Multiplier</td>
+                                <td>@Trader_State.TradeHourConfig.StopLossMultiplier</td>
+                            </tr>
+                            <tr>
+                                <td>Trade Expiration Minutes</td>
+                                <td>@Trader_State.TradeHourConfig.TradeExpirationMinutes</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+            @*Display Table fore Global Session*@
+            @if (Trader_State.Global_Session is not null)
+            {
+             
+                <div class="notebox">
+                    <h3>Global Session</h3>
+                    <table class="table table-sm table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 300px"></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pips</td>
+                                <td>@Trader_State.Global_Session.Pips</td>
+                            </tr>
+                            <tr>
+                                <td>Profit / Loss</td>
+                                <td>@Trader_State.Global_Session.Profit</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+            @*Display Table fore Instrument Session*@
+            @if (Trader_State.Instrument_Session is not null)
+            {
+                
+                <div class="notebox">
+                    <h3>Instrument Session</h3>
+                    <table class="table table-sm table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 300px"></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pips</td>
+                                <td>@Trader_State.Instrument_Session.Pips</td>
+                            </tr>
+                            <tr>
+                                <td>Profit / Loss</td>
+                                <td>@Trader_State.Instrument_Session.Profit</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert-primary">Nothing Found</div>
+        }
+
+    </ContentTemplate>
+</SpinLoader>

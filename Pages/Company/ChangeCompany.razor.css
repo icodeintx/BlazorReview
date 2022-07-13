@@ -1,0 +1,24 @@
+.fancy-text {
+    font-size: x-large;
+    
+}
+
+.fancy-company {
+    font-size: xx-large;
+    font-weight: bold;
+    color: white;
+}
+
+.fancy-broker {
+    font-size: x-large;
+    color: black;
+    font-style: italic;
+}
+
+.fancy-button {
+    background-color: dimgray;
+    padding: 10px;
+    border: solid;
+    border-color: black;
+    border-width: 5px;
+}

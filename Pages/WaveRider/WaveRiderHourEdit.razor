@@ -1,0 +1,122 @@
+﻿@page "/waverider/edit/name/{name}/hour/{hour}"
+
+@using AmaraCode.RainMaker
+@using Blazored.Typeahead
+@inject TraderService _traderService
+
+
+<div class="block-header">
+    Edit WaveRider Hour
+</div>
+
+<button type="button" @onclick='() => navigationManager.NavigateTo($"/waverider/hours/{Name}")'
+        class="btn btn-sm btn-primary">
+    Back To @Name
+</button>
+`
+<div class="container">
+    <EditForm Model="@editWaveRiderHour" OnValidSubmit="@SaveWaveRiderHour">
+        <div class="row align-items-start p-3">
+            <div class="col">
+                <div class="card edit-form p-2">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <label id="Name" class="form-control">@editWaveRiderHour.Name</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="hour">Hour</label>
+                        <label id="hour" class="form-control">@editWaveRiderHour.Hour</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="channelwidth">Channel Width</label>
+                        <InputNumber id="channelwidth" class="form-control" @bind-Value="editWaveRiderHour.ChannelWidth" />
+                    </div>
+@*                    <div class="form-group">
+                        <label for="instrument">Instrument</label>
+                        <InputText id="instrument" class="form-control" @bind-Value="editWaveRiderHour.Instrument" />
+                    </div>*@
+
+                    <div class="form-group">
+                        <label for="instrument">Instrument</label>
+                       
+                        <div class="type-ahead">
+                        <BlazoredTypeahead SearchMethod="SearchInstruments" 
+                                            ConvertMethod="ConvertInstrument"
+                                            @bind-Value="editWaveRiderHour.Instrument">
+                           <SelectedTemplate Context="instrument">
+                                @editWaveRiderHour.Instrument
+                            </SelectedTemplate>
+                       
+                            <ResultTemplate Context="instrument">
+                                @instrument.InstrumentName
+                            </ResultTemplate>
+                    
+                       </BlazoredTypeahead>
+                        <ValidationMessage For="@(() => @editWaveRiderHour.Instrument)" />
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maxchannelheight">Max Channel Height</label>
+                        <InputNumber id="maxchannelheight" class="form-control" @bind-Value="editWaveRiderHour.MaxChannelHeight" />
+                    </div>
+                    <div class="form-group">
+                        <label for="minchannelheight">Min Channel Height</label>
+                        <InputNumber id="minchannelheight" class="form-control" @bind-Value="editWaveRiderHour.MinChannelHeight" />
+                    </div>
+                    <div class="form-group">
+                        <label for="longzone">Long Zone</label>
+                        <InputNumber id="longzone" class="form-control" @bind-Value="editWaveRiderHour.LongZone" />
+                    </div>
+                    <div class="form-group">
+                        <label for="shortzone">Short Zone</label>
+                        <InputNumber id="shortzone" class="form-control" @bind-Value="editWaveRiderHour.ShortZone" />
+                    </div>
+                    <div class="form-group">
+                        <label for="maxspread">Max Spread</label>
+                        <InputNumber id="maxspread" class="form-control" @bind-Value="editWaveRiderHour.MaxSpread" />
+                    </div>
+                    <div class="form-group">
+                        <label for="curveinterval">Curve Intervals</label>
+                        <InputNumber id="curveinterval" class="form-control" @bind-Value="editWaveRiderHour.CurveIntervals" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profitstrategy">Profit Strategy</label>
+                        <InputNumber id="profitstrategy" class="form-control" @bind-Value="editWaveRiderHour.ProfitStrategy" />
+                    </div>
+                    <div class="form-group">
+                        <label for="stoplossmultiplier">Stop Loss Multiplier</label>
+                        <InputNumber id="stoplossmultiplier" class="form-control" @bind-Value="editWaveRiderHour.StopLossMultiplier" />
+                    </div>
+                    <div class="form-group">
+                        <label for="enginedelay">Trader Delay</label>
+                        <InputNumber id="enginedelay" class="form-control" @bind-Value="editWaveRiderHour.EngineDelay" />
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-sm btn-danger m-2">Save</button>
+                <button type="button" @onclick='() => navigationManager.NavigateTo($"/waverider/hours/{Name}")' class="btn btn-sm btn-primary m-2">Return to WaveRider-Hours</button>
+
+            </div>
+            @*2nd Column on first Row*@
+            <div class="col">
+                <div class="notebox">
+                    <ul>
+                        <li>Name and Hour cannot be changed</li>
+                    </ul>
+
+                    
+                </div>
+
+
+            </div>
+        </div>
+
+    </EditForm>
+</div>

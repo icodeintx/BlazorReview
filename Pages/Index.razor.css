@@ -1,0 +1,12 @@
+
+.index-boxes {
+    background-color: white;
+    color: dimgray;
+    padding: 15px;
+    min-height: 225px;
+    border-radius: 2px;
+}
+
+.larger-box {
+    min-height: 375px;
+}

@@ -1,0 +1,123 @@
+﻿@page "/admin/user/edit/{userName}"
+@using AmaraCode.RainMaker
+
+<div class="block-header">Edit User</div>
+
+<div class="container">
+    <EditForm Model="@User" OnValidSubmit="@UpdateUser">
+        <div class="row align-items-start p-3">
+            <div class="col">
+                <div class="card edit-form p-2">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="form-group">
+                        <label for="userId">UserId</label>
+                        <label class="form-control text-nowrap">@User.UserId</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <InputText id="name" class="form-control" @bind-Value="User.Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="username">UserName</label>
+                        <InputText id="UserName" class="form-control" @bind-Value="User.UserName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="emailaddress">Email Address</label>
+                        <InputText id="emailaddress" class="form-control" @bind-Value="User.EmailAddress" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <InputText id="phone" class="form-control" @bind-Value="User.Phone" />
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <InputText id="address" class="form-control" @bind-Value="User.Address" />
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <InputText id="city" class="form-control" @bind-Value="User.City" />
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <InputText id="state" class="form-control" @bind-Value="User.State" />
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">Zip</label>
+                        <InputText id="zip" class="form-control" @bind-Value="User.Zip" />
+                    </div>
+                </div>
+            </div>
+            @*2nd Column on first Row*@
+            <div class="col">
+                <div class="notebox">
+                    <ul>
+                        <li>userId is the RainMaker ID for the user.</li>
+                        <li>IdentityID is the Microsoft.Identity ID used for 
+                            the Authentication and Authorization system.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-lg-start p-3">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="card min-200 m-1">
+                            <div class="card-header">User - Roles</div>
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="form-check">
+                                        @foreach (var ura in userRoleAssigned)
+                                        {
+                                            <input id="@ura.RoleName" class="form-check-input" type="checkbox" value="@ura.RoleName" checked="@ura.IsAssigned"
+                                                   @onchange="@((args) => { ura.IsAssigned = (bool) args.Value;
+                                                                UserRoleCheck(ura.RoleName, ura.IsAssigned);  } )" />
+                                            <label class="form-check-label" for="@ura.RoleName">@ura.RoleName</label>
+                                            <br />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="card min-200 m-1">
+                            <div class="card-header">User - Companies</div>
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="form-check">
+                                        @foreach (var uca in userCompanyAssigned)
+                                        {
+                                            <input class="form-check-input" id="@uca.CompanyName" type="checkbox" value="@uca.CompanyName" checked="@uca.IsAssigned"
+                                                   @onchange="@((args) => { 
+                                                                            uca.IsAssigned = (bool) args.Value;
+                                                                            UserCompanyCheck(uca.CompanyName, uca.IsAssigned);  
+                                                                            })"/>
+                                            <label class="form-check-label" for="@uca.CompanyName">@uca.CompanyName</label>
+                                            <br />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-sm btn-danger m-2">Save</button>
+        <button type="button" @onclick='() => navigationManager.NavigateTo("/admin/user/list")' class="btn btn-sm btn-primary m-2">Return to Users</button>
+
+    </EditForm>
+</div>
+
+<br />
+<hr />
+<br />
+
+<br />
+
+<UpdatePassword userName=@UserName returnURL="@($"/admin/user/edit/{UserName}")" />

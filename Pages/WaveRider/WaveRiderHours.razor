@@ -1,0 +1,75 @@
+﻿@page "/waverider/hours/{name}"
+
+@using AmaraCode.RainMaker
+
+
+
+
+<div class="block-header">
+    WaveRider Hours for @Name
+</div>
+
+<button type="button" @onclick='() => navigationManager.NavigateTo("/waverider/list")'
+        class="btn btn-sm mb-1 btn-primary">
+    Back To WaveRiders
+</button>
+
+<div class="alert-rm rounded-2 m-1 p-3">
+    <table class="table table-striped table-sm table-hover">
+        <thead>
+            <tr class="table-header">
+                <th title="UTC Hour">Hour</th>
+                @*<th title="Local Hour">LH</th>*@
+                <th>Instrument</th>
+                <th title="Channel Width">CW</th>
+                <th title="Max Channel Height">MxChH</th>
+                <th title="Min Channel Height">MnChH</th>
+                <th title="Long Zone">LZ%</th>
+                <th title="Short Zone">SZ%</th>
+                <th title="Curve Interval">CI</th>
+                <th title="Profit Strategy">PS</th>
+                <th title="Stop Loss Multiplier">SLM</th>
+                <th title="Max Spread">MS</th>
+                <th title="Trader Delay Seconds">TD</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Hours)
+            {
+
+                <tr class="@IsActiveHour(item.Hour, DateTime.UtcNow.Hour)">
+                    <td title="Local Hour - @item.LocalHour">@item.Hour</td>
+                    @*<td>@item.LocalHour</td>*@
+                    <td>@item.Instrument</td>
+                    <td title="Channel Width">@item.ChannelWidth</td>
+                    <td title="Max Channel Height">@item.MaxChannelHeight</td>
+                    <td title="Min Channel Height">@item.MinChannelHeight</td>
+                    <td title="Long Zone">@item.LongZone</td>
+                    <td title="Short Zone">@item.ShortZone</td>
+                    <td title="Curve Interval">@item.CurveIntervals</td>
+                    <td title="Profit Strategy">@item.ProfitStrategy</td>
+                    <td title="Stop Loss Multiplier">@item.StopLossMultiplier</td>
+                    <td title="Max Spread">@item.MaxSpread</td>
+                    <td title="Trader Delay Seconds">@item.EngineDelay</td>
+
+                    <td>
+                        <button type="button" @onclick="() => NavigateToEditHour(Name, item.Hour)" class="btn btn-sm btn-primary">Edit</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<button type="button" @onclick='() => navigationManager.NavigateTo("/waverider/list")'
+        class="btn btn-sm btn-primary">
+    Back To WaveRiders
+</button>
+
+<div class="alert-rm rounded-2 m-1 p-3">
+    <h3>Legend for Columns</h3>
+    <WaveRiderHourLegend />
+</div>
+

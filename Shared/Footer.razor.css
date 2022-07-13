@@ -1,0 +1,85 @@
+.footer-distributed {
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 50px 50px 60px 50px;
+    margin-top: 0px;
+    background-color: #212529;
+}
+
+.footer-white-text {
+    color: white;
+}
+
+.footer-distributed {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.footer-distributed h3 {
+    color: #ffffff;
+    font: normal 36px "Cookie", cursive;
+    margin: 0;
+}
+
+.footer-distributed h3 span {
+    color: #3bd636;
+}
+
+.footer-distributed h2 {
+    color: #ffffff;
+    font: normal 36px "Cookie", cursive;
+    margin: 0;
+}
+
+.footer-distributed h2 span {
+    color: #3bd636;
+}
+
+.footer-distributed .footer-project-about {
+    line-height: 20px;
+    color: #92999f;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-project-about span {
+    display: block;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+    margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+    display: inline-block;
+    width: 100px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #cbcdce;
+    border-radius: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
+
+/* Here is the code for Responsive Footer */
+/* You can remove below code if you don't want Footer to be responsive */
+
+@media (max-width: 880px) {
+    .footer-distributed {
+        display: block;
+        width: 100%;
+        margin-bottom: 0px;
+        text-align: center;
+    }
+}

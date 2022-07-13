@@ -1,0 +1,9 @@
+﻿<button type="button" @onclick="() => Navigate()" class="btn mt-2 btn-sm btn-info">Return to Admin Console</button>
+
+@code {
+
+    protected void Navigate()
+    {
+        navigationManager.NavigateTo("/admin/console");
+    }
+}

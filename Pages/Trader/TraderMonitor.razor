@@ -1,0 +1,29 @@
+﻿@page "/tradermonitor/{tradername}"
+
+<div class="block-header">
+    Monitor Trader: @TraderName
+</div>
+
+<button type="button" @onclick="() => NavigateToReturnUrl()" class="btn btn-primary btn-sm mb-1">Return to Previous Page</button>
+
+<div class="notebox">
+    ConnectionID: @TraderMonitorClient.TraderMonitorConnection.ConnectionId
+    <br />
+        
+    <table class="table table-sm table-striped table-hover">
+        <thead>
+            <tr class="table-header">
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in @SignalrPageModel.LineItems)
+            {
+                <tr>
+                    <td class="monitor-style">@item</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

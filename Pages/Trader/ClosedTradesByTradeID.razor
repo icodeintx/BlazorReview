@@ -1,0 +1,29 @@
+﻿@page "/closedtrades/bytradeid"
+<div class="block-header">Closed Trades - TradeID</div>
+<ClosedTradesMenu />
+
+
+<div class="notebox">
+    <EditForm Model="@ClosedTradeQueryModel" OnValidSubmit="@GetTrades">
+        <div class="row p-3">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="col">
+                <div class="form-group">
+                    <label for="tradeid">Enter TradeID</label>
+                    <InputNumber id="tradeid" class="form-control" @bind-Value="ClosedTradeQueryModel.TradeID" />
+                    <div class="">Will try to find TradeId and also return next 10 trade.</div>
+                </div>
+            </div>            
+
+            <div class="col align-middle">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success m-2">Search</button>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+</div>
+    
+
+<ClosedTradeGrid Trades=@_trades />

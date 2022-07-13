@@ -1,0 +1,39 @@
+﻿@page "/companybroker/create/{companyName}"
+
+<div class="container">
+    <div class="alert-rm rounded-2 m-1 p-3">
+        <h4>Create New Company-Broker Assignment</h4>
+        <EditForm Model="@CreateModel" OnValidSubmit="@AddCompanyBroker">
+            <div class="row p-2 align-items-center" width="100%">
+                <div class="col-auto">
+                    <InputSelect id="broker" @bind-Value="SelectedBroker" class="form-control">
+                        <option value="">Select Broker</option>
+                        @foreach (var item in Brokers)
+                        {
+                            <option value="@item.Name">@item.Name</option>
+                        }
+                    </InputSelect>
+                </div>
+                <div class="col-auto">
+                    <InputText id="name" class="form-control" placeholder="Give it a Name" @bind-Value="@CreateModel.Name" />
+                </div>
+                <div class="col">
+                    <InputText id="apikey" class="form-control" placeholder="Enter ApiKey" @bind-Value="@CreateModel.ApiKey" />
+                </div>
+                <div class="col-auto">
+                    <InputText id="accountnumber" class="form-control" placeholder="Account Number" @bind-Value="@CreateModel.AccountNumber" />
+                </div>
+                <div class="col-auto">
+	                <InputCheckbox id="active" class="form-check-input" @bind-Value="CreateModel.SandBox" />
+	                <label class="form-check-label" for="active">SandBox</label>
+                </div>
+            </div>
+
+                <button type="submit" class="btn btn-sm btn-danger m-2">Save</button>
+                <button type="button" @onclick="() => CancelCompanyBrokerEdit()" class="btn btn-sm btn-primary m-2">Return to Company-Brokers</button>
+
+        </EditForm>
+    </div>
+    
+    <CompanyBrokerInfoBox />
+</div>

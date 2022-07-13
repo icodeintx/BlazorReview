@@ -1,0 +1,28 @@
+﻿@using System.Net.Http
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.JSInterop
+@using WebsiteBlazor
+@using WebsiteBlazor.Shared
+@using WebsiteBlazor.Models
+@using WebsiteBlazor.Services
+@using AmaraCode.RainMaker.Models
+@using WebsiteBlazor.Abstract
+@using BlazorPro.Spinkit
+@using System.Security.Claims
+@using BlazorStrap
+@using Blazored.Toast
+@using Blazored.Toast.Services
+@using Blazored.Toast.Configuration
+@using Blazored.Typeahead
+@attribute [Microsoft.AspNetCore.Authorization.Authorize]
+@inject NavigationManager navigationManager
+@inject AlertService _alertService
+@inject AuthenticationStateProvider _identity
+@inject AppConfig _config
+@inject ICacheService _cacheService
+@inject UserService _userService

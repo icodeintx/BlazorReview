@@ -1,0 +1,110 @@
+@inherits LayoutComponentBase
+@inject AuthenticationStateProvider authProvider
+@inject UserService userService
+@inject ICacheService _cacheService
+@inject UserService _userService
+@inject NavigationManager _navigationManager
+@using Blazorise
+
+
+
+<Layout Sider="true">
+    <LayoutSider>
+        <LayoutSiderContent>
+            @*Slider*@
+            <NavMenu />
+        </LayoutSiderContent>
+    </LayoutSider>
+    <Layout>
+        <LayoutHeader Fixed="true">
+            @*Header*@
+            <div class="mytop-row rm-dark px-4">
+                <div class="row">
+                    <div class="col">
+                        @companyName
+                    </div>
+                    <div class="col-auto"><LoginDisplay /></div>
+                </div>
+            </div>
+
+            <BlazoredToasts Position="ToastPosition.BottomCenter"
+				Timeout="4"
+				IconType="IconType.FontAwesome"
+				SuccessClass="success-toast-override"
+				SuccessIcon="fa fa-thumbs-up"
+				ErrorIcon="fa fa-bug" />
+        </LayoutHeader>
+        <LayoutContent>
+            @*Content*@
+            <div class="page">
+                <div class="content px-1 ">
+                    <CascadingValue Name="AppUserName" Value=@AppUserName>
+                        <CascadingValue Name="AuthState" Value=@AuthState>
+                            <CascadingValue Name="UserInfo" Value=@UserInfo>
+                        @Body
+                            </CascadingValue>
+                        </CascadingValue>
+                    </CascadingValue>
+                    <br />
+                </div>
+
+            </div>
+        </LayoutContent>
+        <LayoutFooter>
+            <div>
+                <Footer />
+            </div>
+        </LayoutFooter>
+    </Layout>
+</Layout>
+
+@code
+{
+    public MainLayout()
+    {
+
+    }
+
+
+    /// <summary>
+    /// Used when child components need to refreshe the parent cascading parameters
+    /// </summary>
+  
+
+    protected AuthenticationState AuthState { get; set; }
+    [Inject]
+    protected AuthenticationStateProvider _authenticationStateProvider { get; set; }
+    protected string companyName { get; set; }
+    protected string AppUserName { get; set; }
+    protected UserInfo UserInfo { get; set; }
+    protected Guid CompanyBrokerID { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnParametersSetAsync()
+    {
+        AuthState = await _authenticationStateProvider.GetAuthenticationStateAsync();
+        await GetUserInfo();
+    }
+    
+    /// <summary>
+    ///
+    /// </summary>
+    protected async Task GetUserInfo()
+    {
+        UserInfo = await _userService.GetUserInfo();
+        companyName = UserInfo.CompanyName;
+        AppUserName = UserInfo.UserName;
+        CompanyBrokerID = UserInfo.CompanyBrokerID;
+    }
+}

@@ -1,0 +1,27 @@
+﻿<BSAlert  Color="BSColor.Danger" IsOpen="@isOpen" IsDismissible="true" OnDismiss="@OnDismiss">
+    @_alertService.Message
+</BSAlert>
+
+@code {
+
+    private bool isOpen => (_alertService.Message != "");
+
+    void OnDismiss()
+    {
+        _alertService.AddMessage("");
+        //isOpen = !isOpen;
+    }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("AlertComponent:Initializied");
+        _alertService.RefreshRequested += Refresh;
+    }
+
+    private void Refresh()
+    {
+        Console.WriteLine("AlertComponent:refreshing");
+        InvokeAsync(StateHasChanged);
+        //StateHasChanged();
+    }
+}

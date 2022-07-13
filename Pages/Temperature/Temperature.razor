@@ -1,0 +1,111 @@
+﻿@page "/temperatures"
+
+
+<div class="block-header">
+    Market Temperature
+</div>
+
+<SpinLoader IsLoading="isLoading">
+    
+    <LoadingTemplate>
+        <div class="col-12" style="background-color: lightgray; height:400px; vertical-align:middle">
+            <br />       
+            <br />
+            Loading and processing data from broker...
+            <Chase Center="true" Color="#c21f13" Size="70px"></Chase>
+        </div>
+    </LoadingTemplate>
+
+    <ContentTemplate>
+        <div class="notebox">
+            <h5>Color Coding</h5>
+            <ul>
+                <li>The channel height must be >= 5</li>
+                <li>If Spread is &gt;= 50% of channel height then color text <span class="yellowtext">Orange</span> (bold)</li>
+                <li>If Spread is &lt;= 50% of channel height then color text <span class="greentext">Green</span> (bold and underlined)</li>
+            </ul>
+            <p>
+                <b>Press the 'Update Temperatures' button below to see the latest Market Temperature</b>
+            </p>
+        </div>
+
+        <button type="button" @onclick="() => UpdateTemperatures()" class="btn btn-danger btn-sm m-1">Update Temperatures</button>
+
+        <div class="notebox">
+            <table class="table table-sm table-striped table-hover">
+                <thead>
+                    <tr class="table-header">
+                        <th>Instrument</th>
+                        <th title="Ask - Average Channel Height">AACH</th>
+                        <th title="Bid - Average Channel Height">BACH</th>
+                        <th title="Average Spread">AVSP</th>
+                        <th title="Total Volume">TV</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var temps in Temperatures.OrderBy(x => x.Instrument))
+                    {
+                        <tr>
+                            <td>@temps.Instrument</td>
+                            
+
+                            @* This logic will color the text on the screen for a few conditions
+                               1.  The channel height must be >= 5
+                               2.  If Spread is >= 50% of channel height then color text Yellow
+                               3.  If Spread is <= 50% of channel height then color text Green
+                            *@
+
+                            @if((temps.AverageSpread <= temps.AskAverageChannelHeight) && temps.AskAverageChannelHeight >= 5)
+                            {
+                                @if(((temps.AverageSpread / temps.AskAverageChannelHeight) * 100) >= 50)
+                                {
+                                    <td  class="yellowtext" title="Ask - Average Channel Height">@temps.AskAverageChannelHeight.ToString("0.00")</td>    
+                                }
+                                else
+                                {
+                                    <td class="greentext" title="Ask - Average Channel Height">@temps.AskAverageChannelHeight.ToString("0.00")</td>    
+                                }
+                            }
+                            else
+                            {
+                                <td title="Ask - Average Channel Height">@temps.AskAverageChannelHeight.ToString("0.00")</td>    
+                            }
+
+
+                            @* This logic will color the text on the screen for a few conditions
+                               1.  The channel height must be >= 5
+                               2.  If Spread is >= 50% of channel height then color text Yellow
+                               3.  If Spread is <= 50% of channel height then color text Green
+                            *@
+                            @if((temps.AverageSpread <= temps.BidAverageChannelHeight) && temps.BidAverageChannelHeight >= 5)
+                            {
+                                @if(((temps.AverageSpread / temps.BidAverageChannelHeight) * 100) >= 50)
+                                {
+                                    <td class="yellowtext" title="Bid - Average Channel Height">@temps.BidAverageChannelHeight.ToString("0.00")</td>    
+                                }
+                                else
+                                {
+                                    <td class="greentext" title="Bid - Average Channel Height">@temps.BidAverageChannelHeight.ToString("0.00")</td>    
+                                }
+                            }
+                            else
+                            {
+                                <td title="Bid - Average Channel Height">@temps.BidAverageChannelHeight.ToString("0.00")</td>
+                            }                            
+                            
+                            
+                            
+                            
+                            <td title="Average Spread">@temps.AverageSpread.ToString("0.0")</td>
+                            <td title="Total Volume">@temps.TotalVolume</td>
+                            <td>@temps.Time</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </ContentTemplate>
+</SpinLoader>
+

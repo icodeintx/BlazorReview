@@ -1,0 +1,66 @@
+﻿@page "/admin/broker/list"
+
+
+@using AmaraCode.RainMaker
+
+
+
+<AuthorizeView>
+    <Authorized>
+
+        <div class="block-header">Brokers</div>
+
+        <button type="button" class="btn btn-sm mb-1 btn-primary" @onclick="NavigateToCreateCompany">Create Broker</button>
+
+
+        <div class="notebox">  
+            <table class="table table-sm table-striped table-hover">
+                <thead>
+                    <tr class="table-header">
+                        <th>BrokerID</th>
+                        <th>Name</th>
+                        <th>Alias</th>
+                        <th>Api-URL</th>
+                        <th>Sanbox-Api-URL</th>
+                        <th>LogoFile</th>
+                        <th>Active</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Brokers)
+                    {
+                        <tr>
+                            <td>@item.BrokerID</td>
+                            <td>@item.Name</td>
+                            <td>@item.Alias</td>
+                            <td>@item.ApiUrl</td>
+                            <td>@item.SandboxApiUrl</td>
+                            <td>@item.LogoFile</td>
+                            <td>@item.Active</td>
+                            <td><button type="button" @onclick="() => NavigateToEditCompany(item.BrokerID.ToString())" class="btn btn-primary grid-button">Edit</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @*Bottom Buttons*@
+        <div class="container">
+            <div class="row">
+                <div class="col-sm text-center">
+                </div>
+                <div class="col-sm text-center">
+                    <NavigateToAdminConsole />
+                </div>
+                <div class="col-sm text-center">
+                </div>
+            </div>
+        </div>
+    </Authorized>
+
+    <NotAuthorized>
+        <AdminOnly />
+    </NotAuthorized>
+</AuthorizeView>

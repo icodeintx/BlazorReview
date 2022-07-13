@@ -1,0 +1,76 @@
+﻿@page "/userinfoview"
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Value</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                UserName
+            </td>
+            <td>
+                @userInfo.UserName
+            </td>
+        </tr>
+        <tr>
+            <td>
+                CurrentCompanyID
+            </td>
+            <td>
+                @userInfo.CompanyID.ToString()
+            </td>
+        </tr>
+        <tr>
+            <td>
+                CurrentCompany
+            </td>
+            <td>
+                @userInfo.CompanyName
+            </td>
+        </tr>
+        <tr>
+            <td>
+                CurrentBrokerID
+            </td>
+            <td>
+                @userInfo.BrokerID
+            </td>
+        </tr>
+        <tr>
+            <td>
+                CurrentBroker
+            </td>
+            <td>
+                @userInfo.BrokerName
+            </td>
+        </tr>
+        <tr>
+            <td>
+                CompanyBrokerID
+            </td>
+            <td>
+                @userInfo.CompanyBrokerID;
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                UserId
+            </td>
+            <td>
+                @userInfo.UserId
+            </td>
+        </tr>
+       
+    </tbody>
+</table>
+
+@code {
+
+    [Parameter]
+    public UserInfo userInfo { get; set; }
+
+}

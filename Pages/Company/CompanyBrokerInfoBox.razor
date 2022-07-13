@@ -1,0 +1,26 @@
+﻿<div class="alert-rm min-height-200 rounded-2 m-1 p-3">
+    <h3>What are Company-Broker-AccountNumber entries?</h3>
+    <p>
+    Traders are dependent upon the Company-Broker-AccountNumber entries for access to the Broker API
+    data exchange.  RainMaker is designed to utilize YOUR ApiKey for access to your accounts, therefore, RainMaker doesn't
+    really understand anything about you and will not make any transaction requests to the broker without your
+    ApiKey.
+    </p>
+    <p>Additionally any trading strategy (like WaveRiders) are configured based on the Name you provide for your API key.  
+    This will ensure that the Trader communicates with the broker with the correct ApiKey and AccountNumber
+    </p>
+    <p>
+    Traders can be configured to utilize accounts however YOU decide.  Multiple traders can be configured to utilize the same
+    ApiKey-Account, however, this means multiple traders will have access to the account balance.  For simplicity AmaraCode
+    configures their Traders to each use different accounts.  To configure this stucture there will be a seperate 
+    CompanyBroker entry for each account number, each having the same ApiKey.  Technically you can have multiple accounts at the
+    broker containing multiple account numbers and our design gives flexability for you to accomplish this setup if desired.
+    </p>
+    <p>
+        
+        Tips:
+        1.  Name each CompanyBroker entry a name that can be recognized when creating/editing a Trader.  The name given to these
+            entries will be displayed in dropdown boxes to select the correct ApiKey/Account in the Trader screens.
+        
+    </p>
+</div>

@@ -1,0 +1,89 @@
+﻿@page "/waverider/edit/{name}"
+
+@using AmaraCode.RainMaker
+
+
+<div class="block-header">
+    Edit WaveRider
+</div>
+
+<button type="button" @onclick='() => navigationManager.NavigateTo("/waverider/list")'
+        class="btn btn-sm btn-primary">
+    Back To WaveRiders
+</button>
+
+<div class="container">
+    <EditForm Model="@editWaveRider" OnValidSubmit="@SaveWaveRider">
+        <div class="row align-items-start p-3">
+            <div class="col">
+                <div class="card edit-form p-2">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <InputText id="name" class="form-control" @bind-Value="editWaveRider.Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="companyname">Company Name</label>
+                        <label id="CompanyName" class="form-control">@editWaveRider.CompanyName</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="brokername">Broker</label>
+                        <label id="BrokerName" class="form-control">@editWaveRider.BrokerName</label>
+                    </div>
+@*                    <div class="form-group">
+                        <label for="accountnumber">Account Number at Broker</label>
+                        <InputText id="accountnumber" class="form-control" @bind-Value="editWaveRider.AccountNumber" />
+                    </div>*@
+                    <div class="form-group">
+                        <label for="brokername">Select Broker-Api</label>
+                        <InputSelect class="form-control" @bind-Value="editWaveRider.CompanyBrokerID">
+                            <option value="00000000-0000-0000-0000-000000000000">Select Broker - Api</option>
+                            @foreach (var item in companyBrokers)
+                            {
+                                @if (item.CompanyBrokerID == editWaveRider.CompanyBrokerID)
+                                {
+                                    <option selected value="@item.CompanyBrokerID">@item.BrokerName - @item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.CompanyBrokerID">@item.BrokerName - @item.Name</option>
+                                }
+
+                            }
+                        </InputSelect>
+                    </div>
+                    <div class="form-group">
+                        <label for="accountusageamount">Percentage of account to user for trades</label>
+                        <InputNumber id="accountusageamount" class="form-control" @bind-Value="editWaveRider.AccountUsageAmount" />
+                    </div>
+                    <div class="form-group">
+                        <label for="scrapeamount">Weekly Scrape Amount</label>
+                        <InputNumber id="scrapamount" class="form-control" @bind-Value="editWaveRider.ScrapeAmount" />
+                    </div>
+                    <div class="form-check">
+                        <InputCheckbox id="active" class="form-check-input" @bind-Value="editWaveRider.Active" />
+                        <label class="form-check-label" for="active">Active</label>
+                    </div>
+
+                   
+                </div>
+
+                <button type="submit" class="btn btn-sm btn-danger m-2">Save</button>
+                <button type="button" @onclick='() => navigationManager.NavigateTo("/waverider/list")' class="btn btn-sm btn-primary m-2">Return to WaveRiders</button>
+                 
+            </div>
+            @*2nd Column on first Row*@
+            <div class="col">
+
+                <div class="notebox">
+                    <ul>
+                        <li>Broker and Company Name cannot be changed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+       
+    </EditForm>
+</div>

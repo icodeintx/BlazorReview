@@ -1,0 +1,49 @@
+﻿@page "/admin/activetraders"
+@inject EngineService _engineService
+
+@if (Traders.Count == 0)
+{
+    <div class="alert alert-secondary">There are no active traders at this time.</div>
+}
+else
+{
+    <div class="block-header">Active Traders</div>
+    <div class="notebox">
+    <table class="table table-sm table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Trader</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Traders)
+            {
+                <tr>
+                    <td>@item</td>
+                    <td>
+                        <button type="button" @onclick="() => SendUpdateToSignalr(item)" class="btn btn-primary grid-button">Force Config Update</button>
+                        <button type="button" @onclick="() => SendShutdownToSignalr(item)" class="btn btn-primary grid-button">Shutdown</button>
+                        <button type="button" @onclick="() => SendPauseToggleToSignalr(item)" class="btn btn-primary grid-button">Toggle Pause Trading</button>
+                        <button type="button" @onclick="() => SendDumpCommandToSignalR(item)" class="btn btn-primary grid-button">Dump Data</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+}
+
+@*Bottom Buttons*@
+<div class="container">
+    <div class="row">
+        <div class="col-sm text-center">
+        </div>
+        <div class="col-sm text-center">
+            <NavigateToAdminConsole />
+        </div>
+        <div class="col-sm text-center">
+        </div>
+    </div>
+</div>

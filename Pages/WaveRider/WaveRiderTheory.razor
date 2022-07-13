@@ -1,0 +1,90 @@
+﻿@page "/waveridertheory"
+
+<div class="block-header">
+    The WaveRider Theory
+</div>
+
+<div class="alert-rm rounded-2 m-1 p-3">
+    <p>
+        In market trading everyone always says "buy low and sell high, that is how one becomes rich".  Well 
+        if it was that simple noone would be poor.  When markets are running side-ways or jumping around there
+        is not way to know what the market is about to do or where it is going.  Traditional traders utilize 
+        fancy technical analysis by looking at candles and many complex calculations to hopefully determine if 
+        the market is about to go up or down.  Yes there is some legit guess based on where the market has been
+        and the current price/volume action that does give an idea of where the market might go.  
+    </p>
+    <p>
+        However, if it were that simple again noone would be poor.  Plus there are MANY known and unknown variables 
+        that play into the direction of the next price for any instrument.  We (AmaraCode LLC) have no claim that 
+        we understand the market better or worse than any other person or firm.  To keep things simple we have 
+        developed the WaveRider strategy in an effort to 'buy low / sell high' or 'sell high and buy low'.  We 
+        aim to reach for profits whether the market is going up or down.
+    </p>
+    <p>
+        <b>WaveRider is a scalping strategy only intending for trades to be opened from a few seconds to a few minutes.  
+        WaveRider IS NOT a long term strategy!</b>
+    </p>
+    <p>
+        The goal of WaveRider is to monitor a currency pair (Instrument in our terminology) and place trades if 
+        the market/prices meet the conditions we have configured for the particular Instrument.  
+    </p>
+    <p>
+        Your company may have multiple WaveRiders configured.  Each WaveRider may be trading different 
+        instruments on different hours of the day.  A WaveRider consists of 24 WaveRiderHours numbered from 0-23.  
+        All times are GMT in RainMaker, therefore, the Hour number will be consitent with GMT hours.  Each hour 
+        may be configured to trade different configurations.  This flexibility allows the Trader to 'follow the sun' 
+        and only trade instruments that are active in markets at certain hours of the day for that market.  
+
+    </p>
+        <div class="block-header">Channels</div>
+    <p>
+        To accomplish this strategy, WaveRider is designed to monitor the last 60 prices at 5-second intervals 
+        resulting in a 5-minute history.  These prices are named 'Quotes' and by default the quotes are inserted 
+        into 'Channel Items'.  Also by default there are 60 Channel Items stored in the channel which can be visualized as:
+        <br />
+        <div class="text-center">
+            <img alt="waveriderchannel" src="./images/waveriderchannel.png" />
+        </div>
+        <br />
+        As new quotes are received from the broker, one will go into the channel while the oldest Channel Item will be removed.  
+        Therefore the 60 Channel Items represents 5 minutes of history.  
+        
+        Note that 60 Channel Items is only the default and can be increased or decreased as needed.  
+        
+        <div class="alert-info rounded-2 m-1 p-2">
+        Notice that we refer to price as prices.  This is because there is not just one price.  The prices are split into a 'bid' 
+        price and an 'ask' price.  The difference in these prices is the spread which we will not cover here.  Just understand
+        that WaveRider is always monitoring two prices.
+        </div>
+
+        This channel expands and contracts in <b>height</b> based on the prices.  The 'ask' price may move the top of the channel up
+        while the 'bid' price may move the bottom of the channel lower.  This 'ChannelHeight' is a key configuration option 
+        on the WaveRider strategy.  The WaveRider may pause trading if the ChannelHeight is too low or too high depending on the 
+        values configured for each hour.  
+    </p>
+        <div class="block-header">Zones</div>
+    <p>
+        As prices move up and down WaveRider monitors to see if the prices are in the top or bottom portion of the channel.  
+        The top portion of the channel is known as the 'Short Zone' while the bottom portion of the channel is the 'Long Zone'. 
+        The short zone is configurable as a percentage from the top of the channel while the long zone is configurable 
+        as a percentage from the bottom of the channel.
+        <br />
+        <div class="text-center">
+            <img alt="waveriderzones" src="./images/waveriderzones.png" />
+        </div>
+    </p>
+
+    <p>
+        If the latest price is within either of these zones and all the configuration criteria is met then a trade will be 
+        placed at the broker.  These zones can be configured in height (or turned off) and their configured value is a 
+        % (percentage) value. By default the values are set to 20%.
+    </p>
+
+
+    
+
+</div>
+
+@code {
+
+}

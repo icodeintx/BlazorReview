@@ -1,0 +1,22 @@
+<div class="alert alert-primary mt-4" role="alert">
+    @*<span class="oi oi-pencil mr-2" aria-hidden="true"></span>*@
+    <span class="oi oi-british-pound mr-2" aria-hidden="true"></span>
+    <span class="oi oi-dollar mr-2" aria-hidden="true"></span>
+    <span class="oi oi-euro mr-2" aria-hidden="true"></span>
+    <span class="oi oi-yen mr-2" aria-hidden="true"></span>
+    <span class="oi oi-globe mr-2" aria-hidden="true"></span>
+    <span class="oi oi-calculator mr-2" aria-hidden="true"></span>
+    <strong>@Title</strong>
+
+    <span class="text-nowrap">
+        - Welcome to the
+        <a target="_blank" class="font-weight-bold" href="https://en.wikipedia.org/wiki/Foreign_exchange_market">Forex</a>
+        markets.
+    </span>
+</div>
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string Title { get; set; }
+}

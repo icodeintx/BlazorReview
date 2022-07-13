@@ -1,0 +1,32 @@
+﻿@page "/closedtrades/bytradeweek"
+<div class="block-header">Closed Trades - TradeWeek</div>
+<ClosedTradesMenu />
+
+
+<div class="notebox">
+    <EditForm Model="@ClosedTradeQueryModel" OnValidSubmit="@GetTrades">
+        <div class="row p-3">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="col">
+                <div class="form-group">
+                    <label for="week">Week (1-53)</label>
+                    <InputNumber id="week" class="form-control" @bind-Value="ClosedTradeQueryModel.Week" />
+                    <WebsiteBlazor.Pages.TradeWeek.TradeWeekOnly></WebsiteBlazor.Pages.TradeWeek.TradeWeekOnly>
+                </div>
+            </div>            
+            <div class="col">
+                <div class="form-group">
+                    <label for="year">Select Year</label>
+                    <InputNumber id="year" class="form-control" @bind-Value="ClosedTradeQueryModel.Year" />
+                </div>
+            </div>     
+            <div class="col align-middle">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success m-2">Search</button>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+</div>
+<ClosedTradeGrid Trades=@_trades />

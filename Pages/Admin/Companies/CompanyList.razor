@@ -1,0 +1,53 @@
+﻿@page "/admin/company/list"
+
+@using AmaraCode.RainMaker
+
+<div class="block-header">Companies</div>
+
+<button type="button" class="btn btn-sm mb-1 btn-primary" @onclick="NavigateToCreateCompany">Create Company</button>
+
+<div class="notebox">        
+    <table class="table table-sm table-striped table-hover">
+        <thead>
+            <tr class="table-header">
+                <th>CompanyID</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Active</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Companies)
+            {
+                <tr>
+                    <td>@item.CompanyID</td>
+                    <td>@item.Name</td>
+                    <td>@item.Contact</td>
+                    <td>@item.Email</td>
+                    <td>@item.Phone</td>
+                    <td>@item.City</td>
+                    <td>@item.Active</td>
+                    <td><button type="button" @onclick="() => NavigateToEditCompany(item.CompanyID.ToString())" class="btn btn-primary grid-button">Edit</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@*Bottom Buttons*@
+<div class="container">
+    <div class="row">
+        <div class="col-sm text-center">
+        </div>
+        <div class="col-sm text-center">
+            <NavigateToAdminConsole />
+        </div>
+        <div class="col-sm text-center">
+        </div>
+    </div>
+</div>

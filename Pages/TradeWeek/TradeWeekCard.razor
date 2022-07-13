@@ -1,0 +1,40 @@
+﻿<h4>Current Trade Week</h4>
+<table class="table table-sm">
+    <tr>
+        <td width="10"><b>Week</b> </td>
+        <td>@Convert.ToInt32(Enum.Parse(typeof(WeeksEnum), _tradeweek.Week.ToString()))</td>
+    </tr>
+    <tr>
+        <td><b>Start</b></td>
+        <td class="text-nowrap">@_tradeweek.Start.ToString() UTC</td>
+    </tr>
+    <tr>
+        <td><b>End</b></td>
+        <td class="text-nowrap">@_tradeweek.End.ToString() UTC</td>
+    </tr>
+
+    @if (_tradeweek.SplitWeek)
+    {
+        <tr>
+            <td><b>Split</b></td>
+            <td class="text-nowrap">@_tradeweek.SplitWeek.ToString()</td>
+        </tr>
+    }
+</table>
+
+@code {
+    private TradeWeek _tradeweek = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Run(() => InitialWork());
+
+    }
+
+    protected Task InitialWork()
+    {
+        _tradeweek = TradeWeek.CreateForNow();
+        return Task.CompletedTask;
+    }
+
+}

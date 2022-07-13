@@ -1,0 +1,48 @@
+﻿@page "/admin/authorizedusers"
+@using Microsoft.AspNetCore.Identity;
+@attribute [Authorize(Policy = Policies.Administrator)]
+
+<div class="block-header">Role Manager</div>
+
+<EditForm Model="@newAuthorizedUser" OnValidSubmit="@CreateAuthorizedUser">
+    <div class="notebox" role="alert">
+        <div class="input-group m-2">
+            <span class="input-group-text m-2" id="basic-addon1">New Authrorized User</span>
+            <InputText id="name" placeholder="New Authorized User" class="form-control m-2" @bind-Value="newAuthorizedUser.EmailAddress" />
+            <button type="submit" class="btn btn-sm btn-primary m-2">Add Authorized User</button>
+        </div>
+    </div>
+</EditForm>
+
+<div class="notebox">
+    <table class="table table-sm table-striped table-hover">
+        <thead>
+            <tr class="table-header">
+                <th>EmailAddress</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var au in AuthorizedUsers)
+            {
+                <tr>
+                    <td>@au.EmailAddress</td>
+                    <td><button type="button" @onclick="() => RemoveAuthorizedUser(au.EmailAddress)" class="btn btn-primary grid-button">Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm text-center">
+        </div>
+        <div class="col-sm text-center">
+        </div>
+        <div class="col-sm text-center">
+        </div>
+    </div>
+</div>

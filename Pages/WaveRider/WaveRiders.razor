@@ -1,0 +1,86 @@
+﻿@page "/waverider/list"
+@using AmaraCode.RainMaker
+
+<div class="block-header">
+    WaveRiders
+</div>
+
+<SpinLoader IsLoading="isLoading">
+    
+    <LoadingTemplate>
+        <div class="col-12" style="background-color: lightgray; height:400px; vertical-align:middle">
+            <br />       
+            <br />
+            Loading and processing data from broker...
+            <Chase Center="true" Color="#c21f13" Size="70px"></Chase>
+        </div>
+    </LoadingTemplate>
+
+    <ContentTemplate>
+        <button type="button" @onclick="() => NavigateToCreateWaveRider()" class="btn btn-primary btn-sm mb-1">Create New WaveRider</button>
+
+        <a href="/waveridertheory">The WaveRider Theory</a>
+
+        <div class="notebox">
+        <table class="table table-sm table-striped table-hover">
+            <thead>
+                <tr class="table-header">
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Broker</th>
+                    <th>Account</th>
+                    <th>Active</th>
+                    <th>Total Traders: @WaveRiderList.Count</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in WaveRiderList.OrderBy(x => x.Name))
+                {
+                    <tr>
+                        <td class="">@item.Name</td>
+                        <td class="">@item.CompanyName</td>
+                        <td class="">@item.BrokerName</td>
+                        <td class="">@item.AccountNumber</td>
+                        <td>@item.Active</td>
+                        <td class="">
+                            <button type="button" @onclick="() => NavigateToEditWaveRider(item.Name)" class="btn btn-primary grid-button">Edit</button>
+                            <button type="button" @onclick="() => NavigateToHours(item.Name)" class="btn btn-primary grid-button">Hours</button>
+
+                                @if (_activeTraders.Contains(item.Name))
+                                {
+                                    <button type="button" @onclick="() => NavigateToMonitor(item.Name)" class="btn btn-primary grid-button">Monitor</button>
+                                }
+                                else
+                                {
+                                    <button type="button" @onclick="() => NavigateToMonitor(item.Name)" class="btn btn-secondary grid-button">Monitor</button>
+                                }
+
+
+                            
+                            @if (RedisKeyExistsAsync($"TraderState_{item.Name}"))
+                            {
+                                <button type="button" @onclick="() => NavigateToTraderState(item.Name)" class="btn btn-primary grid-button">View State</button>
+                            }
+                            else
+                            {
+                                <button type="button" @onclick="() => NavigateToTraderState(item.Name)" class="btn btn-secondary grid-button">View State</button>
+                            }
+
+                            @if (DoesTradeExistAsync(item.Name))
+                            {
+                                <linkbutton type="button" @onclick="() => SendCloseTradeCommand(item.Name)" class="btn btn-danger grid-button">Close Trade</linkbutton>
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+
+    </ContentTemplate>
+</SpinLoader>
+
+
+

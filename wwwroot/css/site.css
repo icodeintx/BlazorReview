@@ -1,0 +1,150 @@
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #0e2e49;
+}
+
+a, .btn-link {
+    color: #0366d6;
+}
+
+.page-title {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 500;
+    font-size: x-large;
+    text-align: center;
+    border-bottom: outset;
+    margin: 0px 0px 10px 0px;
+    color: white;
+}
+
+.grid-button {
+    /*color: white;
+    background-color: cornflowerblue;*/
+    border-radius: 4px;
+    padding: 0px 5px 0px 5px;
+    margin: 0px 5px 0px 0px;
+}
+
+.rm-width-100-percent {
+    width: 100%;
+}
+
+.min-height-150 {
+    min-height: 150px;
+}
+
+.min-height-175 {
+    min-height: 175px;
+}
+
+.min-height-200 {
+    min-height: 200px;
+}
+
+.min-height-250 {
+    min-height: 250px;
+}
+
+.white-text {
+    color: white;
+}
+
+.table-header {
+    background-color: #3d3d3d;
+    color: white;
+}
+
+.type-ahead {
+    background-color: white;
+    color: black;
+}
+
+.block-header {
+    background-color: #3d3d3d;
+    padding: 10px;
+    min-height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: x-large;
+    font-weight: 500;
+    color: white;
+    margin: 15px 0px 15px;
+}
+
+.notebox {
+    background-color: white;
+    color: dimgray;
+    min-width: 400px;
+    border-radius: 5px;
+    min-height: 100px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.alert-rm {
+    background-color: white;
+    color: dimgray;
+    min-width: 300px;
+}
+
+.rm-dark {
+    background-color: #212529;
+    color: #fff;
+}
+
+.rm-disabled {
+    background-color: #808080;
+    color: #fff;
+}
+
+.page {
+    min-height: calc(100vh - 190px - 64.2px - 25px);
+}
+
+.edit-form {
+    background-color: #333333;
+    color: White;
+    min-width: 300px;
+}
+
+.card-body {
+    background-color: white;
+}
+
+.content {
+    padding-top: 1.1rem;
+    width: 100%;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }

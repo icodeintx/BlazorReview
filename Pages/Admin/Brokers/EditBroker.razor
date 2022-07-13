@@ -1,0 +1,60 @@
+﻿@page "/admin/broker/edit/{id}"
+
+@using AmaraCode.RainMaker
+
+<div class="block-header">Edit Broker</div>
+
+<div class="container">
+    <EditForm Model="@Broker" OnValidSubmit="@UpdateBroker">
+        <div class="row align-items-start p-3">
+            <div class="col">
+                <div class="card edit-form p-2">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+
+                    <div class="form-group">
+                        <label for="companyID">ID</label>
+                        <label class="form-control rm-disabled" id="companyID">@Broker.BrokerID</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <InputText id="name" class="form-control" @bind-Value="Broker.Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="alias">Alias</label>
+                        <InputText id="alias" class="form-control" @bind-Value="Broker.Alias" />
+                    </div>
+                    <div class="form-group">
+                        <label for="apiurl">ApiURL</label>
+                        <InputText id="apiurl" class="form-control" @bind-Value="Broker.ApiUrl" />
+                    </div>
+                    <div class="form-group">
+                        <label for="sandboxapiurl">Sanbox ApiUrl</label>
+                        <InputText id="sanboxapiurl" class="form-control" @bind-Value="Broker.SanboxApiUrl" />
+                    </div>
+                    <div class="form-group">
+                        <label for="logofile">LogoFile</label>
+                        <InputText id="logofile" class="form-control" @bind-Value="Broker.LogoFile" />
+                    </div>
+                    <div class="form-group">
+                        <InputCheckbox id="active" @bind-Value="Broker.Active" />
+                        <label for="active">Active</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-sm btn-danger m-2">Save</button>
+                <button type="button" @onclick='() => navigationManager.NavigateTo("/admin/broker/list")' class="btn btn-sm btn-primary m-2">Return to Brokers</button>
+
+            </div>
+            @*2nd Column on first Row*@
+            <div class="col">
+                <div class="alert alert-rm">
+                    <ul>
+                        <li>BrokerID cannot be change.</li>
+                        <li>Logo File is for future use.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+</div>

@@ -1,0 +1,19 @@
+.navbar {
+/*    width: stretch;*/
+}
+
+.navbar-container {
+/*    width: stretch;*/
+    /*background-color: #222;*/
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler {
+        display: none;
+    }
+
+    .navbar-toggler {
+        display: none;
+    }
+
+}

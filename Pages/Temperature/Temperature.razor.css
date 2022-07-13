@@ -1,0 +1,13 @@
+﻿body {
+}
+
+.greentext {
+    color: green;
+    font-weight: 900;
+    text-decoration: underline;
+}
+
+.yellowtext {
+    color: darkorange;
+    font-weight: 900;
+}

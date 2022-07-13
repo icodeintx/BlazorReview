@@ -1,0 +1,50 @@
+﻿@page "/company/change/{returnurl}"
+@*<h3>ChangeCompany</h3>*@
+<AuthorizeView>
+    <div class="alert-rm min-height-200 rounded-2 m-1 p-3">
+        @{ if (companies.Count < 2)
+            {
+                <div class="alert-danger p-5 text-center">You do not have access to any other companies</div>
+            }
+            else
+            {
+                /*<div class="page-title">Change Company</div>*/
+            
+                <div class="block-header">
+                    Select Company
+                </div>
+
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr class="table-header">
+                            <th>Company</th>
+                            <th>Broker</th>
+                            <th>AccountNumber</th>
+                            <th>SandBox</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in companies)
+                        {
+                                
+                                <tr>
+                                    <td class="">@item.CompanyName</td>
+                                    <td class="">@item.BrokerName</td>
+                                    <td class="">@item.AccountNumber</td>
+                                    <td class="">@item.SandBox</td>
+                                    <td><button type="button" class="btn btn-primary grid-button" @onclick="() => SelectCompany(item)">Select</button></td>
+                                </tr>
+                                
+                            
+                        }
+                            
+                    </tbody>
+                </table>
+            
+            }
+        }
+    </div>
+</AuthorizeView>

@@ -1,0 +1,87 @@
+﻿@page "/admin/company/edit/{id}"
+
+@using AmaraCode.RainMaker
+
+<div class="block-header">Edit Company</div>
+
+<div class="container">
+    <EditForm Model="@Company" OnValidSubmit="@UpdateCompany">
+        <div class="row align-items-start p-3">
+            <div class="col">
+                <div class="card edit-form p-2">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+
+                    <div class="form-group">
+                        <label for="companyID">ID</label>
+                        <label class="form-control text-nowrap" id="companyID">@Company.CompanyID</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <InputText id="name" class="form-control" @bind-Value="Company.Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <InputText id="address" class="form-control" @bind-Value="Company.Address" />
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <InputText id="city" class="form-control" @bind-Value="Company.City" />
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <InputText id="state" class="form-control" @bind-Value="Company.State" />
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">Zip</label>
+                        <InputText id="zip" class="form-control" @bind-Value="Company.Zip" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <InputText id="emailaddress" class="form-control" @bind-Value="Company.Email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <InputText id="phone" class="form-control" @bind-Value="Company.Phone" />
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact</label>
+                        <InputText id="contact" class="form-control" @bind-Value="Company.Contact" />
+                    </div>
+                    @*    <div class="form-group">
+                            <label for="logofile">LogoFile</label>
+                            <InputText id="logofile" class="form-control" @bind-Value="company.LogoFile" />
+                        </div>*@
+                    <div class="form-group">
+                        <label for="acpercent">AmaraCode Percent</label>
+                        <InputNumber id="acpercent" class="form-control" @bind-Value="Company.ACPercent" />
+                    </div>
+                    <div class="form-group">
+                        <label for="taxpercent">Tax Percent</label>
+                        <InputNumber id="taxpercent" class="form-control" @bind-Value="Company.TaxPercent" />
+                    </div>
+                    <div class="form-group">
+                        <InputCheckbox id="active" @bind-Value="Company.Active" />
+                        <label for="active">Active</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-sm btn-danger m-2">Save</button>
+                <button type="button" @onclick='() => navigationManager.NavigateTo("/admin/company/list")' class="btn btn-sm btn-primary m-2">Return to Companies</button>
+
+            </div>
+            @*2nd Column on first Row*@
+            <div class="col">
+                <div class="notebox">
+                    <ul>
+                        <li>CompanyID cannot be modified</li>
+                        <CompanyCommonNotes />
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+       
+    </EditForm>
+</div>

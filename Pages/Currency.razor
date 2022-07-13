@@ -1,0 +1,55 @@
+﻿@*@page "/currency/{code}"*@
+@page "/currency"
+
+@using WebsiteBlazor.Services
+
+<div class="block-header">Currencies</div>
+
+@if (CurrencyList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (CurrencyList.Count == 0)
+{
+    <p><em>Loading.....</em></p>
+}
+else
+{
+    <div class="notebox">        
+        <table class="table table-sm table-striped table-hover">
+            <thead>
+                <tr>
+                    <th style="background-color:transparent"></th>
+                    <th style="background-color:transparent"></th>
+                    <th colspan="3" class="text-center base-color">Base</th>
+                    <th colspan="3" class="text-center quote-color">Quote</th>
+                </tr>
+                <tr class="table-header">
+                    <th>Instrument</th>
+                    <th title="Significant Digit">SD</th>
+                    <th>Code</th>
+                    <th>Country</th>
+                    <th>Currency</th>
+                    <th>Code</th>
+                    <th>Country</th>
+                    <th>Currency</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in CurrencyList)
+                {
+                    <tr>
+                        <td>@item.Instrument.Name</td>
+                        <td>@item.Instrument.SignificantDigit</td>
+                        <td>@item.Base_Code</td>
+                        <td class="">@item.Base_Country</td>
+                        <td class="">@item.Base_CurrencyName</td>
+                        <td>@item.Quote_Code</td>
+                        <td class="">@item.Quote_Country</td>
+                        <td class="">@item.Quote_CurrencyName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

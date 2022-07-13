@@ -1,0 +1,51 @@
+﻿@page "/admin/user/list"
+@using AmaraCode.RainMaker
+
+<div class="block-header">Users</div>
+
+<button type="button" class="btn btn-sm mb-1 btn-primary" @onclick="NavigateToCreateUser">Add User</button>
+
+<div class="notebox">
+    <table class="table table-sm table-striped table-hover">
+        <thead>
+            <tr class="table-header">
+                <th>User</th>
+                <th>UserName</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th></th>
+                @*          <th></th>
+                    <th></th>
+                *@
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var user in users.OrderBy(x => x.UserName))
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.UserName</td>
+                    <td>@user.EmailAddress</td>
+                    <td>@user.Phone</td>
+                    <td>@user.City</td>
+                    <td><button type="button" @onclick="() => NavigateToEditUser(user.UserName)" class="btn btn-primary grid-button">Edit</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@*Bottom Buttons*@
+<div class="container">
+    <div class="row">
+        <div class="col-sm text-center">
+        </div>
+        <div class="col-sm text-center">
+        </div>
+        <div class="col-sm text-center">
+        </div>
+    </div>
+</div>
+

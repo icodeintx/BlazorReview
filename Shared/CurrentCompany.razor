@@ -1,0 +1,28 @@
+﻿@inject UserService _userService
+
+<div class="alert alert-primary float-left auth">@userInfo.CompanyName</div>
+
+@code {
+
+    public UserInfo userInfo { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    public async Task GetUserInfo()
+    {
+        var ui = await _userService.GetUserInfo();
+
+        if (ui is not null)
+        {
+            userInfo = ui;
+        }
+        else
+        {
+            userInfo = new UserInfo();
+        }
+
+    }
+
+}

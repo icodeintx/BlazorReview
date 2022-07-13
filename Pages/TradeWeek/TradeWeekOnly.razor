@@ -1,0 +1,18 @@
+﻿Current Trade Week : @Convert.ToInt32(Enum.Parse(typeof(WeeksEnum), _tradeweek.Week.ToString()))
+
+@code {
+    private TradeWeek _tradeweek = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Run(() => InitialWork());
+
+    }
+
+    protected Task InitialWork()
+    {
+        _tradeweek = TradeWeek.CreateForNow();
+        return Task.CompletedTask;
+    }
+
+}

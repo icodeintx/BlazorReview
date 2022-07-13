@@ -1,0 +1,45 @@
+﻿@using Blazored.Toast.Services
+@using Microsoft.Extensions.Logging
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.AspNetCore.Components;
+
+@inject IWebHostEnvironment _hostEnv
+@inject  ILogger<Toast> _logger
+@inject IToastService _toastService
+
+
+<CascadingValue Value=this IsFixed=true>
+    @ChildContent
+</CascadingValue>
+
+
+@code {
+
+        //This Global Logging for Blazor was developed using YouTube Instruction
+    //https://www.youtube.com/watch?v=mxOYvu2MWFo
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    
+    public void DisplaySuccessToast(string message)
+    {
+        _toastService.ShowSuccess(message);
+    }
+
+   
+    public void ProcessError(Exception ex)
+    {
+        if (_hostEnv.IsDevelopment())
+        {
+            _toastService.ShowError($"Something has gone wrong: {ex.Message} ");
+        }
+        else
+        {
+            _toastService.ShowError("Something has gone wrong.  Please contact the administrator");
+        }
+
+        _logger.LogError(ex, ex.Message);
+    }
+   
+}

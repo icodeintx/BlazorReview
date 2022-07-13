@@ -1,0 +1,37 @@
+﻿@page "/admin/oandainstruments"
+@inject AlertService alertService
+@using AmaraCode.RainMaker
+
+
+
+<div class="notebox">
+    
+    <h3>Update System Instruments</h3>
+    <div class="table">
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col-2">Company</div>
+                    <div class="col-4">@UserInfo.CompanyName</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col-2">Broker</div>
+                    <div class="col-4">@UserInfo.BrokerName</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <button type="button" @onclick="() => UpdateInstruments()" class="btn btn-primary m-1 btn-sm">Update Database</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

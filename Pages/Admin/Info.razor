@@ -1,0 +1,57 @@
+﻿@page "/info"
+@attribute [Authorize(Policy = Policies.Administrator)]
+
+
+<AuthorizeView>
+
+    @{
+   
+                <div class="notebox">
+                    <div>
+                        UserName = @AuthState.User.Identity.Name;
+                        <br />
+                        IsAuthenticate = @AuthState.User.Identity.IsAuthenticated.ToString();
+                    </div>
+                    <br />
+
+                    <div class="page-title">Identity Claims</div>
+                    <div class="card rounded">
+                        <table class="table table-sm table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                @foreach (Claim claim in AuthState.User.Claims)
+                                {
+                                        <tr>
+                                            <td>@claim.Type</td>
+                                            <td>@claim.Value</td>
+                                        </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr />
+
+                    <div class="page-title">Redis UserInfo</div>
+                    @*<UserInfoView userInfo="@GetRedisInfo(UserInfo.UserName)"></UserInfoView>*@
+                </div>
+    }
+
+    @*Bottom Buttons*@
+    <div class="container">
+        <div class="row">
+            <div class="col-sm text-center">
+            </div>
+            <div class="col-sm text-center">
+            </div>
+            <div class="col-sm text-center">
+            </div>
+        </div>
+    </div>
+</AuthorizeView>

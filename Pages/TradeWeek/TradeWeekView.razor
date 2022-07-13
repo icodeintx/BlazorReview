@@ -1,0 +1,45 @@
+﻿@page "/tradeweek"
+
+
+<div class="block-header">
+    Trading Week
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="alert-rm rounded p-3 m-1">
+            <TradeWeekCard />
+        </div>
+    </div>
+    <div class="col">
+        <div class="alert-rm rounded p-3 m-1">
+            <h5>How are trading weeks defined?</h5>
+            <p>
+                RainMaker operates on a week basis due to the Forex markets operating from
+                Sunday through Friday. The operational concept of RainMaker is based on RainMaker
+                Traders operating non-stop during market trading hours while all accounts are 
+                closed-out at the end of the trading week.
+            </p>
+            <p>
+                RainMaker defines weeks in a calendar year between 1 and 53.  There are slightly 
+                more than 52 weeks during the calendar year and some trading weeks are split during 
+                the calendar year change.  
+            </p>
+            <ul>
+                <li>Weeks are based on Fridays</li>
+                <li>Weeks are numbered according to the first Friday in the year</li>
+                <li>
+                    If the year changes during a trading week, that week is considered 
+                    a split-week.  Trading transactions for a split week will have 
+                    two different calendar years.
+                </li>
+                <li>
+                    A split-week will result in a week number 53 extending the trading week defined
+                    by RainMaker into the next calendar year. This results in 
+                    the 2nd Friday of the new year as Week #1.
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

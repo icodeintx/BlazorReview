@@ -1,0 +1,29 @@
+﻿@if(Quotes is not null)
+{
+<div class="alert-rm min-height-200 rounded-2 m-1 p-3">
+    <table class="table table-sm table-striped table-hover">
+        <thead>
+            <tr class="table-header">
+                <th>Instrument</th>
+                <th>Bid</th>
+                <th>Ask</th>
+                <th>Tradeable</th>
+                <th>Time (UTC)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Quotes.OrderBy(x => x.InstrumentName))
+            {
+                <tr>
+                    <td class="">@item.InstrumentName</td>
+                    <td class="">@item.BestBid.ToString()</td>
+                    <td class="">@item.BestAsk.ToString()</td>
+                    <td class="">@item.Tradeable</td>
+                    <td class="">@item.DateZ</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    Total Quotes: @Quotes.Count
+</div>
+}

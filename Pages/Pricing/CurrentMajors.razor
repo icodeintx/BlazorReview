@@ -1,0 +1,26 @@
+﻿Latest Major Prices
+@if(_quotes is not null)
+{
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr class="table-header">
+            <th>Instrument</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>Tradeable</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in _quotes.OrderBy(x => x.InstrumentName))
+        {
+            <tr>
+                <td class="">@item.InstrumentName</td>
+                <td class="">@item.BestBid.ToString()</td>
+                <td class="">@item.BestAsk.ToString()</td>
+                <td class="">@item.Tradeable</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+}

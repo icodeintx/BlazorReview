@@ -1,0 +1,40 @@
+﻿@page "/companybroker/edit/{EditCompanyBrokerID}"
+@*
+    @attribute [Authorize(Policy = "Administrator")]
+*@
+
+@*Note: if we get to here the user has clicked on an Edit button in the list of
+    CompanyBrokers.  Now just display the screen to allow limited editing.*@
+<div class="container">
+    <div class="alert-rm rounded-2 m-1 p-3">
+        <h4>Edit the Company-Broker</h4>
+        <EditForm Model="@EditModel" OnValidSubmit="@SaveCompanyBroker">
+            <div class="row p-2 align-items-center" width="100%">
+                <div class="col-auto">
+                    Name 
+                    <InputText id="name" class="form-control" placeholder="Give it a Name" @bind-Value="@EditModel.Name" />
+                </div>
+                <div class="col">
+                    Broker ApiKey
+                    <InputText id="apikey" class="form-control" placeholder="Enter ApiKey" @bind-Value="@EditModel.ApiKey" />
+                </div>
+                <div class="col-auto">
+                    Account Number
+                    <InputText id="accountnumber" class="form-control" placeholder="Enter AccountNumber" @bind-Value="@EditModel.AccountNumber" />
+                </div>
+                <div class="col-auto">
+	                <InputCheckbox id="active" class="form-check-input" @bind-Value="EditModel.SandBox" />
+	                <label class="form-check-label" for="active">SandBox</label>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-sm btn-danger m-2">Save</button>
+            <button type="button" @onclick="() => CancelCompanyBrokerEdit()" class="btn btn-sm btn-primary m-2">Return to Company-Brokers</button>
+
+        </EditForm>
+    </div>
+
+    <CompanyBrokerInfoBox />
+
+</div>
+

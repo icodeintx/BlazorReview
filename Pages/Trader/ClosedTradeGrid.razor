@@ -1,0 +1,48 @@
+﻿
+@if(Trades is not null)
+{
+<div class="notebox">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr class="table-header">
+                <th>TradeID</th>
+                <th>Instrument</th>
+                <th>Opened</th>
+                <th>Closed</th>
+                <th>P/L</th>
+                <th>Pips</th>
+                <th>Win</th>
+                <th>Trader</th>
+                <th>Duration</th>
+                <th>AccountNumber</th>
+                    
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Trades.OrderBy(x => x.TradeID))
+            {
+                <tr>
+                    <td class="">@item.TradeID</td>
+                    <td class="">@item.Instrument</td>
+                    <td class="">@item.OpenTime</td>
+                    <td class="">@item.CloseTime</td>
+                    @if(item.PL < 0)
+                    {
+                        <td class="negative-value">@item.PL.ToString("#.#####")</td>    
+                    }
+                    else
+                    {
+                            <td class="positive-value">@item.PL.ToString("#.#####")</td>    
+                    }
+                    <td class="">@item.Pips.ToString("#.#####")</td>
+                    <td class="">@item.Win</td>
+                    <td class="">@item.TraderName</td>
+                    <td class="">@item.Duration</td>
+                    <td class="">@item.AccountNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    Total Traders: @Trades.Count
+</div>
+}

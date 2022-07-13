@@ -1,0 +1,51 @@
+﻿@page "/admin/roles"
+@using Microsoft.AspNetCore.Identity;
+@attribute [Authorize(Policy = Policies.Administrator)]
+
+<div class="block-header">Role Manager</div>
+
+<EditForm Model="@newRole" OnValidSubmit="@CreateRole">
+    <div class="notebox" role="alert">
+        <div class="input-group m-2">
+            <span class="input-group-text m-2" id="basic-addon1">New Role</span>
+            <InputText id="name" placeholder="New Role Name" class="form-control m-2" @bind-Value="newRole.Name" />
+            <button type="submit" class="btn btn-sm btn-primary m-2">Add Role</button>
+        </div>
+    </div>
+</EditForm>
+
+<div class="notebox">
+    <table class="table table-sm table-striped table-hover">
+        <thead>
+            <tr class="table-header">
+                <th>ID</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var role in roles)
+            {
+                <tr>
+                    <td>@role.RoleId</td>
+                    <td>@role.Name</td>
+                    <td><button type="button" @onclick="() => DeleteRole(role.Name)" class="btn btn-primary grid-button">Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm text-center">
+        </div>
+        <div class="col-sm text-center">
+            <NavigateToAdminConsole />
+        </div>
+        <div class="col-sm text-center">
+        </div>
+    </div>
+</div>

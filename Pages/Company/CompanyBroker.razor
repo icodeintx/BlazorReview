@@ -1,0 +1,57 @@
+﻿@page "/companybroker/"
+
+
+    <button type="button" class="btn btn-sm mb-1 btn-primary" @onclick="NavigateToCreateCompanyBroker">Create CompanyBroker</button>
+
+     <div class="alert-rm min-height-200 rounded-2 m-1 p-3">
+        <h3>Current Company-Broker-Account Assignments</h3>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr class="table-header">
+                    <th>Broker</th>
+                    <th>Name</th>
+                    <th>ApiKey</th>
+                    <th>Account Number</th>
+                    <th>SandBox</th>
+                    <th>Active</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in CompanyBrokers)
+                {
+                    @if (CompanyBrokers.Count > 1)
+                    {
+                        <tr>
+                            <td>@item.BrokerName</td>
+                            <td>@item.Name</td>
+                            <td>@item.BrokerApiKey</td>
+                            <td>@item.AccountNumber</td>
+                            <td>@item.SandBox</td>
+                            <td><button type="button" @onclick="() => ToggleActive(item.CompanyBrokerID)" class="btn btn-info btn-sm">@item.Active</button></td>
+                            <td><button type="button" @onclick="() => EditCompanyBroker(item.CompanyBrokerID)" class="btn btn-info btn-sm">Edit</button></td>
+                            <td><button type="button" @onclick="() => RemoveCompanyBroker(item.CompanyBrokerID)" class="btn btn-danger btn-sm">Remove</button></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>@item.BrokerName</td>
+                            <td>@item.Name</td>
+                            <td>@item.BrokerApiKey</td>
+                            <td>@item.AccountNumber</td>
+                            <td>@item.SandBox</td>
+                            <td><button type="button" @onclick="() => ToggleActive(item.CompanyBrokerID)" class="btn btn-info btn-sm">@item.Active</button></td>
+                            <td><button type="button" @onclick="() => EditCompanyBroker(item.CompanyBrokerID)" class="btn btn-info btn-sm">Edit</button></td>
+                            <td></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="alert-rm min-height-200 rounded-2 m-1 p-3">
+        <CompanyBrokerInfoBox />
+    </div>

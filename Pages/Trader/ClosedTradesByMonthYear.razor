@@ -1,0 +1,46 @@
+﻿@page "/closedtrades/bymonthyear"
+<div class="block-header">Closed Trades - Month/Year</div>
+<ClosedTradesMenu></ClosedTradesMenu>
+
+
+<div class="notebox">
+    <EditForm Model="@ClosedTradeQueryModel" OnValidSubmit="@GetTrades">
+        <div class="row p-3">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="mont">Select Month</label>
+                    <InputSelect class="form-control" @bind-Value="ClosedTradeQueryModel.Month">
+                        @for(int x = 1; x <= 12; x++)
+                        {
+                            @if (x == DateTime.UtcNow.Month)
+                            {
+                                <option selected value="@x">@Enum.GetName(typeof(Months), x)</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@Enum.GetName(typeof(Months), x)</option>
+                            }
+                        }
+                    </InputSelect>
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <InputNumber id="year" class="form-control" @bind-Value="ClosedTradeQueryModel.Year" />
+                </div>
+            </div>            
+
+            <div class="col-2">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success m-2">Search</button>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+</div>
+
+<ClosedTradeGrid Trades=@_trades />

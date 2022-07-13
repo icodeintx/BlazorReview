@@ -1,0 +1,53 @@
+﻿@page "/admin/broker/create"
+@inject CompanyService _companyService
+
+<div class="block-header">Create Broker</div>
+
+
+<div class="container">
+    <EditForm Model="@Broker" OnValidSubmit="@Create">
+        <div class="row align-items-start p-3">
+            <div class="col">
+                <div class="card edit-form p-2">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <InputText id="name" class="form-control" @bind-Value="Broker.Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="alias">Alias</label>
+                        <InputText id="alias" class="form-control" @bind-Value="Broker.Alias" />
+                    </div>
+                    <div class="form-group">
+                        <label for="city">ApiUrl</label>
+                        <InputText id="apiurl" class="form-control" @bind-Value="Broker.ApiUrl" />
+                    </div>
+                    <div class="form-group">
+                        <label for="state">Sanbox ApiUrl</label>
+                        <InputText id="sandboxapiurl" class="form-control" @bind-Value="Broker.SanboxApiUrl" />
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">LogoFile</label>
+                        <InputText id="logofile" class="form-control" @bind-Value="Broker.LogoFile" />
+                    </div>
+                    <div class="form-group">
+                        <InputCheckbox id="active" @bind-Value="Broker.Active" />
+                        <label for="active">Active</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-sm btn-danger m-2">Save</button>
+                <button type="button" @onclick='() => navigationManager.NavigateTo("/admin/broker/list")' class="btn btn-sm btn-primary m-2">Return to Brokers</button>
+            </div>
+            @*2nd Column on first Row*@
+            <div class="col">
+                <div class="notebox">
+                    <ul>
+                        <li>Currently SandBox ApiUrl is not enabled</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+</div>

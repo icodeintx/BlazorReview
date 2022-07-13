@@ -1,0 +1,62 @@
+﻿@page "/admin/user/create"
+
+
+<div class="block-header">Create User</div>
+
+<div class="container">
+    <EditForm Model="@newUser" OnValidSubmit="@CreateNewUser">
+        <div class="row align-items-start p-3">
+            <div class="col">
+                <div class="card edit-form p-2">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <InputText id="name" class="form-control" @bind-Value="newUser.Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="UserName">UserName</label>
+                        <InputText id="UserName" class="form-control" @bind-Value="newUser.UserName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="emailaddress">Email Address</label>
+                        <InputText id="emailaddress" class="form-control" @bind-Value="newUser.EmailAddress" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Phone">Phone</label>
+                        <InputText id="Phone" class="form-control" @bind-Value="newUser.Phone" />
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <InputText id="address" class="form-control" @bind-Value="newUser.Address" />
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <InputText id="city" class="form-control" @bind-Value="newUser.City" />
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <InputText id="state" class="form-control" @bind-Value="newUser.State" />
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">Zip</label>
+                        <InputText id="zip" class="form-control" @bind-Value="newUser.Zip" />
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-sm btn-danger m-2">Save</button>
+                <button type="button" @onclick='() => navigationManager.NavigateTo("/admin/user/list")' class="btn btn-sm btn-primary m-2">Return to Users</button>
+
+            </div>
+            @*2nd Column on first Row*@
+            <div class="col">
+                <div class="notebox">
+                    <ul>
+                        <li>put something here</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </EditForm>
+</div>

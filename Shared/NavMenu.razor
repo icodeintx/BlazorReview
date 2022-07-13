@@ -1,0 +1,169 @@
+@using Blazorise.Sidebar
+@using Blazorise.Icons
+@using Blazorise
+
+<Sidebar @ref="sidebar">
+    <SidebarContent>
+        <SidebarBrand>
+            <a href="#">RainMaker</a>
+        </SidebarBrand>
+        <SidebarNavigation>
+            <AuthorizeView>     
+                <Authorized>
+                    <SidebarLabel>Main</SidebarLabel>
+                    <SidebarItem>
+                        <SidebarLink To="/" Title="Home">
+                            <Icon Name="IconName.Home" Margin="Margin.Is2.FromEnd" />
+                            Home
+                        </SidebarLink>
+                    </SidebarItem>
+                    <SidebarItem>
+                        <SidebarLink To="/myprofile" Title="MyProfile">
+                            <Icon Name="IconName.User" Margin="Margin.Is2.FromEnd" />
+                            My Profile
+                        </SidebarLink>
+                    </SidebarItem>
+                    <SidebarItem>
+                        <SidebarLink To="/tradeweek" Title="TradeWeek">
+                            <Icon Name="IconName.Clock" Margin="Margin.Is2.FromEnd" />
+                            Trade Week
+                        </SidebarLink>
+                    </SidebarItem>
+                    <SidebarItem>
+                        <SidebarLink To="/waverider/list" Title="WaveRiders">
+                            <Icon Name="IconName.PuzzlePiece" Margin="Margin.Is2.FromEnd" />
+                            WaveRiders
+                        </SidebarLink>
+                    </SidebarItem>
+
+                    <SidebarLabel>Market</SidebarLabel>
+                    <SidebarItem>
+                        <SidebarLink To="/temperatures" Title="Temperatures">
+                            <Icon Name="IconName.Tint" Margin="Margin.Is2.FromEnd" />
+                            Temperatures
+                        </SidebarLink>
+                    </SidebarItem>
+                    <SidebarItem>
+                        <SidebarLink To="/currency" Title="Currencies">
+                            @*<Icon Name="IconName.DollarSign" Margin="Margin.Is3.FromEnd" />*@
+                            <Icon Name="IconName.Bars" Margin="Margin.Is2.FromEnd" />
+                            Currencies
+                        </SidebarLink>
+                    </SidebarItem>
+                    <SidebarItem>
+                        <SidebarLink To="/currentprices" Title="Prices">
+                            @*<Icon Name="IconName.DollarSign" Margin="Margin.Is3.FromEnd" />*@
+                            <Icon Name="IconName.DollarSign" Margin="Margin.Is2.FromEnd" />
+                            Current Prices
+                        </SidebarLink>
+                    </SidebarItem>
+                    <SidebarItem>
+                        <SidebarLink To="/closedtrades" Title="ClosedTrades">
+                            <Icon Name="IconName.Dashboard" Margin="Margin.Is2.FromEnd" />
+                            Closed Trades
+                        </SidebarLink>
+                    </SidebarItem>
+
+
+                </Authorized>
+            </AuthorizeView>
+
+
+
+
+
+
+            <SidebarLabel>Company</SidebarLabel>
+            <AuthorizeView>
+                <Authorized>
+                    <SidebarItem>
+                        <SidebarLink To="/mycompany" Title="MyCompany">
+                            <Icon Name="IconName.Wrench" Margin="Margin.Is2.FromEnd" />
+                            My Company
+                        </SidebarLink>
+                    </SidebarItem>                    
+                </Authorized>
+            </AuthorizeView>
+
+            <AuthorizeView>
+                <Authorized>
+                    <SidebarItem>
+                        <SidebarLink To="/company/change/index" Title="ChangeCompany">
+                            <Icon Name="IconName.Hotel" Margin="Margin.Is2.FromEnd" />
+                            Change Company
+                        </SidebarLink>
+                    </SidebarItem>
+                </Authorized>
+            </AuthorizeView>
+
+            <AuthorizeView>
+                <Authorized>
+                    <SidebarLabel>Admin Only</SidebarLabel>
+                    
+                        <SidebarItem>
+                            <SidebarLink Toggled="(isOpen)=> adminSidebarSubItems.Toggle(isOpen)" IsShow="true">
+                                <Icon Name="IconName.Edit" Margin="Margin.Is2.FromEnd" />Administrator
+                            </SidebarLink>
+                            <SidebarSubItem @ref="adminSidebarSubItems" IsShow="true">
+                                <SidebarItem>
+                                    <SidebarLink To="admin/company/list">Companies</SidebarLink>
+                                </SidebarItem>
+                                <SidebarItem>
+                                    <SidebarLink To="admin/broker/list">Brokers</SidebarLink>
+                                </SidebarItem>
+                                <SidebarItem>
+                                    <SidebarLink To="admin/user/list">Users</SidebarLink>
+                                </SidebarItem>
+                                <SidebarItem>
+                                    <SidebarLink To="admin/authorizedusers">Authorized Users</SidebarLink>
+                                </SidebarItem>
+                                <SidebarItem>
+                                    <SidebarLink To="admin/roles">Roles</SidebarLink>
+                                </SidebarItem>
+                                <SidebarItem>
+                                    <SidebarLink To="admin/activetraders">Active Traders</SidebarLink>
+                                </SidebarItem>
+                                <SidebarItem>
+                                    <SidebarLink To="info">Info</SidebarLink>
+                                </SidebarItem>
+                                <SidebarItem>
+                                    <SidebarLink To="/admin/oandainstruments">Update Instruments</SidebarLink>
+                                </SidebarItem>
+
+                                @* other subitems *@
+                            </SidebarSubItem>
+                        </SidebarItem>
+
+                </Authorized>
+            </AuthorizeView>
+            
+            
+
+
+           
+@*            <SidebarItem>
+                <SidebarLink Toggled="(isOpen)=> appsSidebarSubItems.Toggle(isOpen)" IsShow="true">
+                    <Icon Name="IconName.Smartphone" Margin="Margin.Is3.FromEnd" />Apps
+                </SidebarLink>
+                <SidebarSubItem @ref="appsSidebarSubItems" IsShow="true">
+                    <SidebarItem>
+                        <SidebarLink To="#apps/todo">Todo List</SidebarLink>
+                    </SidebarItem>
+                </SidebarSubItem>
+            </SidebarItem>*@
+
+
+        </SidebarNavigation>
+    </SidebarContent>
+</Sidebar>
+
+@code{
+    Sidebar sidebar;
+    
+    SidebarSubItem adminSidebarSubItems;
+
+    void ToggleSidebar()
+    {
+        sidebar.Toggle();
+    }
+}

@@ -1,0 +1,54 @@
+@page "/"
+@page "/index"
+@using WebsiteBlazor.Pages.TradeWeek
+
+<div class="container">
+
+    <div class="row m-1">
+        <div class="col m-1">
+            <div class="index-boxes larger-box">
+                <Index_Panel1 />
+            </div>
+        </div>
+        <div class="col m-1">
+            <div class="index-boxes larger-box">
+                <Index_Panel2 />
+            </div>
+        </div>
+    </div>
+
+    <div class="row m-1">
+        <div class="col m-1">
+            <div class="index-boxes">
+                <Index_Panel3 />
+            </div>
+        </div>
+    </div>
+
+    <div class="row m-1">
+        <div class="col m-1">
+            <div class="index-boxes">
+                <Index_Panel4 />
+            </div>
+        </div>
+        <div class="col m-1">
+            <div class="index-boxes">
+                <Index_Panel5 />
+            </div>
+        </div>
+    </div>
+
+    <SurveyPrompt Title=" RainMaker by AmaraCode LLC" />
+
+</div>
+
+@code {
+
+
+    /*[CascadingParameter(Name = "AppUserName")]
+    protected string AppUserName { get; set; }
+    */
+
+
+
+}

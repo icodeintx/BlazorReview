@@ -1,0 +1,15 @@
+﻿@page "/admin/console"
+
+
+
+<div class="block-header">Administrator</div>
+
+<AuthorizeView>
+    <Authorized>
+        <ConsoleUI />
+    </Authorized>
+
+    <NotAuthorized>
+        <AdminOnly />
+    </NotAuthorized>
+</AuthorizeView>
